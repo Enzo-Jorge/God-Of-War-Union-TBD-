@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Discussões</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body onload="AtualizarPosts(), validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu ativo">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+              <a href="mural.html">Mural</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="histórias.html">Histórias</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="musicas.html">Músicas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="armas.html">Armas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="quizzes.html">Quizzes</a>
+          </li>
+          <li>
+            |
+          </li>
+            <li>
+              <a href="ajude.html">Ajude!!</a>
+          </li>
+      </ul>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Criar uma postagem:</h1>
+      <h3>Título:</h3>
+      <input type="text" id="input_titulo">
+      <h3>Conteudo:</h3>
+      <input type="text" id="input_conteudo">
+      <button onclick="postar()">Postar</button>
+      <div class="postagens">
+        <div id="confirmacao"></div>
+        <div id="postagem"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+
+document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+
+    var comentario_atual = 0;
+    var post_container = "";
+
+      function postar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var idVar = sessionStorage.ID_USUARIO;
+    var tituloVar = input_titulo.value;
+    var conteudoVar = input_conteudo.value;
+   if (
+      tituloVar == "" ||
+      conteudoVar == ""
+    ) {
+      alert('Não se pode realizar uma postagem com o título e/ou o conteudo em branco.');
+
+    //   finalizarAguardar();
+      return false;
+    } else {
+        fetch("../posts/postar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        tituloServer: tituloVar,
+        conteudoServer: conteudoVar,
+        idServer: idVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          confirmacao.innerHTML += `Post realizado com sucesso!`;
+        } else {
+          throw "Houve um erro ao tentar realizar a postagem!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+    }
+
+    function AtualizarPosts() {
+        fetch("../posts/AtualizarPosts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+
+            }),
+        })
+        .then(function (resposta) {
+            console.log("resposta:", resposta);
+
+            if (resposta.ok) {
+                resposta.json()
+                .then(function (resultado) {
+                    console.log(resultado)
+                    for(var index = 0; index < resultado.length; index++) {
+                        postagem.innerHTML += `<div class="postagem-container" onclick="abrir_post(${resultado[index].idPost})" id="postagem-container${resultado[index].idPost}">
+                          <div class="post-header">
+                        <img src="${resultado[index].imgUrl}" alt="Foto de perfil" style="height: 100px; width: 100px">
+                        <div class="post-content">
+                        <h1>Usuário: ${resultado[index].nick} | Título: ${resultado[index].titulo}</h1><br>
+                        <h3>${resultado[index].conteudo}</h3><br>
+                        </div>
+                        </div>
+                        <div id="posts${resultado[index].idPost}"></div>
+                        </div>
+                        `;
+                        // <input type="text" id="input_comentario${index}">
+                        // <button onclick="comentar(${index})">Comentar</button>
+                    }
+                })
+            } else {
+                throw "Houve um erro ao tentar atualizar as postagens!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+    function abrir_post(idPost) {
+      fetch("../posts/abrir_post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              idPostServer: idPost,
+            }),
+        })
+        .then(function (resposta) {
+
+            if (resposta.ok) {
+                resposta.json()
+                .then(function (resultado) {
+                    console.log(resultado)
+                    document.getElementById(`posts${idPost}`).innerHTML = ``;
+                    document.getElementById(`postagem-container${idPost}`).onclick = ``;
+                    
+                    for(var index = 0; index < resultado.nick.length; index++) {
+                    document.getElementById(`posts${idPost}`).innerHTML += `
+                    <div class="comentario-container">
+                      <img src="${resultado.imgUrl[index]}" alt="Foto de perfil">
+                        <div class="comm-header">
+                        <h3>Usuário: ${resultado.nick[index]}</h3><br>
+                        <div class="comm-content">
+                        <h5>${resultado.conteudoComm[index]}</h5><br>
+                    </div>
+                    `; 
+                  }
+                  document.getElementById(`posts${idPost}`).innerHTML += `
+                  <input id="input_comentario${idPost}">
+                  <button onclick="comentar(${idPost})">Comentar</button>
+                  `;
+                })
+            } else {
+                throw "Houve um erro ao tentar atualizar as postagens!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+    function comentar(idPost) {
+        var idVar = sessionStorage.ID_USUARIO;
+        var conteudoCommVar = document.getElementById(`input_comentario${idPost}`).value;
+
+        if (
+            conteudoCommVar == ""
+        ) {
+            alert('Não se pode realizar uma postagem com o título e/ou o conteudo em branco.');
+
+            return false;
+        } else {
+            fetch("../posts/comentar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            conteudoCommServer: conteudoCommVar,
+            idServer: idVar,
+            idPostServer: idPost,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              confirmacao.innerHTML += `Comentário realizado com sucesso!`;
+            } else {
+              throw "Houve um erro ao tentar realizar o comentário!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+
+        return false;
+        }
+    }
+</script>

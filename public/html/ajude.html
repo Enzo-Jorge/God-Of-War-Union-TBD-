@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Histórias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body onload="validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+            <a href="mural.html">Mural</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="histórias.html">Histórias</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="musicas.html">Músicas</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="armas.html">Armas</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="quizzes.html">Quizzes</a>
+        </li>
+        <li>
+          |
+        </li>
+          <li class="agora">
+            <a href="ajude.html">Ajude!!</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="content" style="background-image: url(https://i.pinimg.com/originals/78/8e/b3/788eb3fe3a2f75d898c900a425bab962.jpg); height: 100vh;">
+  <div class="gdq">
+    <div class="gdq-imgs">
+    <a href="https://gamesdonequick.com">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Games_Done_Quick_logo_2018.png" alt="Games Done Quick" style="height: 300px;">
+  </a>
+  <a href="https://brasil.un.org/pt-br/sdgs/3">
+  <img src="https://brasil.un.org/profiles/undg_country/themes/custom/undg/images/SDGs/pt-br/SDG-3.svg" alt="3a ODS ONU" style="height: 300px;">
+</a>
+</div>
+  <span class="text-gdq">
+  <h1>Quer ajudar a comunidade e muito mais? Conheça a GDQ!</h1>
+  <h3>A God Of War Union tem uma parceria com o projeto "Games Done Quick". Um projeto que visa juntar os melhores speedrunners para uma celebração tanto virtual quanto presencial do mundo dos jogos enquanto, ao mesmo tempo, todo dinheiro arrecadado com o evento é doado para instituíções de caridade, sendo o maior doador para a "Prevent Cancer Foundation" e para a "Médicos sem fronteiras". Assim, ajudando a contribuir com uma dos "Objetivos de Desenvolvimento Sustentável" da ONU.</h3>
+  <h3>O evento começará no dia 30 de Junho e irá até o dia 06 de Julho. Compareçam e doem! Seja por presencial ou online, qualquer valor é bem-vindo!</h3>
+  <h3>Não tem dinheiro? Tudo bem! Sua visualização do evento através da plataforma "Twitch" já é de imensa ajuda e aprecio!</h3>
+</span>
+  </div>
+</div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+    document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+</script>

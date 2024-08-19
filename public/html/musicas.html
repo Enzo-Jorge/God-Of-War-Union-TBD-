@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Musicas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body onload="validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+              <a href="mural.html">Mural</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="histórias.html">Histórias</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li class="agora">
+              <a href="musicas.html">Músicas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="armas.html">Armas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="quizzes.html">Quizzes</a>
+          </li>
+          <li>
+            |
+          </li>
+            <li>
+              <a href="ajude.html">Ajude!!</a>
+          </li>
+      </ul>
+</div>
+</div>
+<div class="content" style="background-image: url(https://i.pinimg.com/originals/78/8e/b3/788eb3fe3a2f75d898c900a425bab962.jpg); height: 100vh;">
+    <button onclick="retroceder()" id="retroceder-musica">&lt;</button>
+    <button onclick="avancar()" id="avancar-musica">&gt;</button>
+    <div class="slider-musica">
+        <div class="slides">
+            <div class="slide" id="idimg1">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/5/53/God_of_War_2005_capa.png">
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/2pdRUtncwrc?si=D1htUKtu271ZmLl8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ATkSkeY0fDE?si=tIemcw2s-GWzcl9-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/t7jZ_CPzgZI?si=KeIrDHd975IozHgC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/J00pCxiZnho?si=rUmpJ2iUdIPqcU6h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/DGqDtQht_gY?si=T55pui3SmwPxK21c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/zNCQahZU6BQ?si=OPeUuNWjxHTWOHdN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/HlZ2YlCXgW0?si=1LBb8WYs6X3Eo8VL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6oIZhkLcAm0?si=11yY9HddfI5lshyr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/h-hr1mKZgWU?si=BjA9rt9nvoOXcTxB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/1vmjzPSLbCg?si=qNyFlS1dBORBH_NU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/kB1_mcTiOYs?si=RHjMYQ1BqZaYyAtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/wg_5xkOK1Vg?si=RAqM_VIBPVwJe46z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ZjBdAHxCc50?si=aAwvmoDLXlLnJ8K6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/xv5NENTfULo?si=rOVmGO9xIsx7JvTJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AzIo8sKUX2M?si=pDWewGRTDeguNRBW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/mMGtda8mTlo?si=IyfXCz5J_I8MVNrA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/MQ93_g3hlW0?si=XzhiHEyMWmNSGGYe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/PBzlA9BvZUY?si=oLnklDFJTxKLiWoc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/V5Ar0dKnl6Y?si=3G3WZarJ8IkMSeJD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/eME2EbknCZQ?si=ngCQWcyxfXFuKIbI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="slide">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-32-6FqGW2E?si=RNIOlJBHXKgq8Q6M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+      </div>
+      <div class="historia">
+        <h1 id="titulo_jogo" class="jogo-text">The Vengeful Spartan <a onclick="estrela1()" class="estrela" id="estrela_fav1">☆</a></h1>
+        <h3 id="sinopse_jogo" class="jogo-text">OST de God Of War 1</h3>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script src="../js/musicas.js"></script>
+<script>
+
+// Adicionado em 28/07/2024
+
+    var song_title = '#';
+    var song_id = '#';
+
+    songPull();
+
+    document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+
+    function songPull() {
+
+      var idVar = Number(sessionStorage.ID_USUARIO);
+
+      fetch(`/favs/pullSong/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO histPull()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+          resposta.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            estrela_dourada(resposta, sessionStorage.ID_USUARIO);
+
+          })
+
+        } else {
+          console.error('Nenhum dado encontrado na API');
+        }
+
+      }).catch(function (error) {
+        console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+      });
+    }
+
+    function estrela_dourada(resposta, id) {
+      console.log('Iniciando o pull dos dados...');
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela função "songPull()" e passados para "estrela_dourada()":')
+      console.log(resposta)
+
+      var registro = resposta[0];
+
+      var song_title = registro.musica;
+      var song_id = registro.idMusica;
+
+
+      if(titulo_jogo.innerHTML == `${song_title} <a onclick="estrela${song_id}()" class="estrela" id="estrela_fav${song_id}">☆</a>`) {
+        titulo_jogo.innerHTML = `${song_title} <a onclick="estrela${song_id}()" class="estrela" id="estrela_fav${song_id}">★</a>`
+      }
+
+    }
+  
+    function estrela1() {
+
+      if(estrela_fav1.innerHTML == '☆') {
+        estrela_fav1.innerHTML = '★';
+        favoritoVar = 1;
+      } else {
+        estrela_fav1.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela2() {
+      
+      if(estrela_fav2.innerHTML == '☆') {
+        estrela_fav2.innerHTML = '★';
+        favoritoVar = 2;
+      } else {
+        estrela_fav2.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela3() {
+      
+      if(estrela_fav3.innerHTML == '☆') {
+        estrela_fav3.innerHTML = '★';
+        favoritoVar = 3;
+      } else {
+        estrela_fav3.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela4() {
+      
+      if(estrela_fav4.innerHTML == '☆') {
+        estrela_fav4.innerHTML = '★';
+        favoritoVar = 4;
+      } else {
+        estrela_fav4.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela5() {
+      
+      if(estrela_fav5.innerHTML == '☆') {
+        estrela_fav5.innerHTML = '★';
+        favoritoVar = 5;
+      } else {
+        estrela_fav5.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela6() {
+      
+      if(estrela_fav6.innerHTML == '☆') {
+        estrela_fav6.innerHTML = '★';
+        favoritoVar = 6;
+      } else {
+        estrela_fav6.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela7() {
+      
+      if(estrela_fav7.innerHTML == '☆') {
+        estrela_fav7.innerHTML = '★';
+        favoritoVar = 7;
+      } else {
+        estrela_fav7.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela8() {
+      
+      if(estrela_fav8.innerHTML == '☆') {
+        estrela_fav8.innerHTML = '★';
+        favoritoVar = 8;
+      } else {
+        estrela_fav8.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela9() {
+      
+      if(estrela_fav9.innerHTML == '☆') {
+        estrela_fav9.innerHTML = '★';
+        favoritoVar = 9;
+      } else {
+        estrela_fav9.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela10() {
+      
+      if(estrela_fav10.innerHTML == '☆') {
+        estrela_fav10.innerHTML = '★';
+        favoritoVar = 10;
+      } else {
+        estrela_fav10.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela11() {
+      
+      if(estrela_fav11.innerHTML == '☆') {
+        estrela_fav11.innerHTML = '★';
+        favoritoVar = 11;
+      } else {
+        estrela_fav11.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela12() {
+      
+      if(estrela_fav12.innerHTML == '☆') {
+        estrela_fav12.innerHTML = '★';
+        favoritoVar = 12;
+      } else {
+        estrela_fav12.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela13() {
+      
+      if(estrela_fav13.innerHTML == '☆') {
+        estrela_fav13.innerHTML = '★';
+        favoritoVar = 13;
+      } else {
+        estrela_fav13.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela14() {
+      
+      if(estrela_fav14.innerHTML == '☆') {
+        estrela_fav14.innerHTML = '★';
+        favoritoVar = 14;
+      } else {
+        estrela_fav14.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela15() {
+      
+      if(estrela_fav15.innerHTML == '☆') {
+        estrela_fav15.innerHTML = '★';
+        favoritoVar = 15;
+      } else {
+        estrela_fav15.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela16() {
+      
+      if(estrela_fav16.innerHTML == '☆') {
+        estrela_fav16.innerHTML = '★';
+        favoritoVar = 16;
+      } else {
+        estrela_fav16.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela17() {
+      
+      if(estrela_fav17.innerHTML == '☆') {
+        estrela_fav17.innerHTML = '★';
+        favoritoVar = 17;
+      } else {
+        estrela_fav17.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela18() {
+      
+      if(estrela_fav18.innerHTML == '☆') {
+        estrela_fav18.innerHTML = '★';
+        favoritoVar = 18;
+      } else {
+        estrela_fav18.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela19() {
+      
+      if(estrela_fav19.innerHTML == '☆') {
+        estrela_fav19.innerHTML = '★';
+        favoritoVar = 19;
+      } else {
+        estrela_fav19.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela20() {
+      
+      if(estrela_fav20.innerHTML == '☆') {
+        estrela_fav20.innerHTML = '★';
+        favoritoVar = 20;
+      } else {
+        estrela_fav20.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function estrela21() {
+      
+      if(estrela_fav21.innerHTML == '☆') {
+        estrela_fav21.innerHTML = '★';
+        favoritoVar = 21;
+      } else {
+        estrela_fav21.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritarMusica();
+      
+    }
+    
+    function favoritarMusica() {
+      
+      var idVar = Number(sessionStorage.ID_USUARIO);
+      
+      if(
+        idVar == ''
+      ) {
+        console.log('O id não pode estar indefinido.')
+      } else {
+        fetch("../favs/favoritarMusica", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idServer: idVar,
+            musicaFavServer: favoritoVar,
+          }),
+        })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+          
+          if (resposta.ok) {
+            console.log('dados inseridos no banco com sucesso!');
+          } else {
+            throw "Houve um erro no fetch ao tentar realizar a inserção no banco!"
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO ${resposta}`);
+        });
+        
+        return false;
+        }
+        
+      }
+
+</script>

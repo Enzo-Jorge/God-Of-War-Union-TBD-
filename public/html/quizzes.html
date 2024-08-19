@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Quizzes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <style>
+            canvas {
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+        </style>
+  </head>
+  <body onload="validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+            <a href="mural.html">Mural</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="histórias.html">Histórias</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="musicas.html">Músicas</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li>
+            <a href="armas.html">Armas</a>
+          </li>
+          <li>
+            |
+          </li>
+          <li class="agora">
+            <a href="quizzes.html">Quizzes</a>
+        </li>
+          <li>
+            <li>
+              |
+            </li>
+            <a href="ajude.html">Ajude!!</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="content" id="div_content" style="background-image: url(https://i.pinimg.com/originals/78/8e/b3/788eb3fe3a2f75d898c900a425bab962.jpg); height: 100vh;">
+<div class="quiz-card-container">
+<a class="quiz-card" onclick="quiz(1)" id="quiz_1">
+    <img src="https://i.ytimg.com/vi/_20c_V2Er88/maxresdefault.jpg" alt="" height="250px">
+    <span><h1>Quiz de God Of War #1</h1></span>
+</a>
+<a class="quiz-card" onclick="quiz(2)" id="quiz_2">
+    <img src="https://c4.wallpaperflare.com/wallpaper/693/106/332/god-of-war-god-of-war-ii-kratos-wallpaper-preview.jpg" alt="" height="250px">
+    <span><h1>Quiz de God Of War #2</h1></span>
+    </a>
+</div>
+<div class="content-dash">
+  <div class="quiz-main">
+  <canvas id="quiz_dash_all" style="height: 100px;">
+                
+  </canvas>
+</div>
+</div>
+</div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+  /* finalizado em 25/07/2024 */
+          dashResultados()
+
+          document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+
+          function dashResultados() {
+          fetch(`/dash/resultadosGerais/${sessionStorage.ID_USUARIO}`, {
+            method: "GET",
+          }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO dashResultados()!")
+            
+            if (resposta.ok) {
+              console.log(resposta);
+              resposta.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                resposta.reverse();
+
+                plotarDash(resposta, sessionStorage.ID_USUARIO);
+
+              })
+
+            } else {
+              console.error('Nenhum dado encontrado na API');
+            }
+
+          }).catch(function (error) {
+            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+          });
+        }
+
+          function plotarDash(resposta, id) {
+            console.log('Iniciando a plotagem do gráfico...');
+
+            let labels = [];
+
+            let dados =  {
+              labels: labels,
+              datasets: [{
+                label: 'Acertos',
+                data: [],
+                fill: false,
+                backgroundColor: '#48d348'
+              },
+              {
+                label: 'Erros',
+                data: [],
+                fill: false,
+                backgroundColor: '#004455'
+              }]
+            };
+
+            console.log('----------------------------------------------')
+            console.log('Estes dados foram recebidos pela função "dashResultados()" e passados para "plotarDash()":')
+            console.log(resposta)
+
+            for(index = 0; index < resposta.length; index++) {
+              var registro = resposta[index];
+              labels.push('Acertos e erros no geral')
+              dados.datasets[0].data.push(registro.acertosUsu);
+              dados.datasets[1].data.push(registro.errosUsu);
+            }
+
+            console.log('----------------------------------------------')
+            console.log('O gráfico será plotado com os respectivos valores:')
+            console.log('Labels:')
+            console.log(labels)
+            console.log('Dados:')
+            console.log(dados.datasets)
+            console.log('----------------------------------------------')
+            
+            const config = {
+              type: 'bar',
+              data: dados,
+              options: {
+                plugins: {
+                legend: {
+                  labels: {
+                    color: 'white'
+                    }
+                  }
+                },
+                scales: {
+                  y: {
+                    ticks: {
+                      color: 'white'
+                    }
+                  },
+                  x: {
+                    ticks: {
+                      color: 'white'
+                    }
+                  }
+                }
+              },
+            };
+
+            let myChart = new Chart(
+              document.getElementById('quiz_dash_all'),
+              config
+            );
+
+          }
+
+  /* finalizado em 25/07/2024 */
+
+        var acertos = 0;
+        var erros = 0;
+        var contador = 0;
+        var quiz_atual = 0;
+
+    function quiz(quiz) {
+        quiz_atual = quiz;
+
+        if(quiz == 1) {
+        imagens_perguntas_lista = ['../assets/quiz/image.png', 'https://i.pinimg.com/originals/57/b7/48/57b748d0603a46d611e2e774b361957c.png', '../assets/quiz/Rage_of_the_gods.webp', 'https://i.ytimg.com/vi/ews0EX6AVF4/maxresdefault.jpg'];
+
+        perguntas_lista = ['Qual é o chefe do prólogo do jogo? (O Mar Egeu)', 'Qual o nome dessa magia dada ao Kratos?', 'Qual o nome deste estado do Kratos?', 'Quem é o coveiro de verdade?'];
+
+        alternativas_lista = [
+            ['A Hidra', 'O Ares', 'O Poseidon', 'O Hércules'],
+            ['Raio de Zeus', 'Exército de Hades', 'Tempestade de gelo de Bóreas', 'Ira de Poseidon'],
+            ['Ira Espartana', 'Fúria dos Deuses', 'O último Espartano', 'General dos Deuses'],
+            ['Hades', 'Dolo', 'Zeus', 'Loki']
+        ]; 
+
+        alternativas_corretas = ['A Hidra', 'Ira de Poseidon', 'Fúria dos Deuses', 'Zeus']
+    } else if(quiz == 2){
+      imagens_perguntas_lista = ['../assets/quiz/image2.png', '../assets/imgs/Sisters_of_Fate.webp', 'https://i.ytimg.com/vi/eBfDRA0ZI-A/maxresdefault.jpg', 'https://i.ytimg.com/vi/tR3nTcQwvgQ/maxresdefault.jpg'];
+
+        perguntas_lista = ['Qual é o nome dessa peça de armadura no ombro de Kratos?', 'Qual dessas NÃO é uma das irmãs do destino?', 'Qual o nome deste "chefe" no qual Kratos enfrenta no prólogo do jogo?', 'Que figura histórica é referenciada neste local?'];
+
+        alternativas_lista = [
+            ['Braceira dourada', 'Velo de ouro', 'Armadura banhada em ouro', 'A ombreira de Hércules'],
+            ['Lahkesis', 'Átropos', 'Alecto', 'Clotho'],
+            ['Estátua de Delos', 'Monumento de Atenas', 'Redentor de Ática', 'Colosso de Rhodes'],
+            ['Oppenheimer', 'Aristóteles', 'Einstein', 'Tesla']
+        ]; 
+
+        alternativas_corretas = ['Velo de ouro', 'Alecto', 'Colosso de Rhodes', 'Oppenheimer']
+    }
+
+        div_content.innerHTML = `<div class="quiz-container">
+<div class="quiz-card-question">
+    <img src="${imagens_perguntas_lista[contador]}" alt="" style="height: 300px;">
+    <h1>${perguntas_lista[contador]}</h1>
+</div>
+<div class="quiz-card-answers">
+<div class="quiz-card-answers-row1">
+    <button onclick="responder('0')" id="0">${alternativas_lista[contador][0]}</button>
+    <button onclick="responder('1')" id="1">${alternativas_lista[contador][1]}</button>
+</div>
+<div class="quiz-card-answers-row2">
+    <button onclick="responder('2')" id="2">${alternativas_lista[contador][2]}</button>
+    <button onclick="responder('3')" id="3">${alternativas_lista[contador][3]}</button>
+</div>
+</div>
+</div>`;
+}
+
+function responder(id_resposta) {
+    if(alternativas_corretas[contador] == document.getElementById(id_resposta).textContent) {
+        document.getElementById(id_resposta).style.color = '#00ff22';
+        document.getElementById(id_resposta).style.boxShadow = '0 0 30px #00ff22';
+        document.getElementById(id_resposta).style.border = '3px solid #00ff22';
+        document.getElementById(id_resposta).style.transform = 'scale(1.05)';
+
+        document.getElementById('0').disabled = 'true';
+        document.getElementById('1').disabled = 'true';
+        document.getElementById('2').disabled = 'true';
+        document.getElementById('3').disabled = 'true';
+
+        acertos++;
+
+        setTimeout(() => {
+            if(contador < 3) {
+                contador++
+                quiz(quiz_atual)
+            } else {
+                resultados_quiz(),
+                //Adicionado a função inserirDados quando o quiz acaba (01/07/2024)
+                inserirDados()
+            }
+        }, 1000);
+    } else {
+        document.getElementById(id_resposta).style.color = 'red';
+        document.getElementById(id_resposta).style.boxShadow = '0 0 30px red';
+        document.getElementById(id_resposta).style.border = '3px solid red';
+        document.getElementById(id_resposta).style.transform = 'scale(1.05)';
+
+        document.getElementById('0').disabled = 'true';
+        document.getElementById('1').disabled = 'true';
+        document.getElementById('2').disabled = 'true';
+        document.getElementById('3').disabled = 'true';
+
+        erros++;
+        
+        setTimeout(() => {
+            if(contador < 3) {
+                contador++
+                quiz(quiz_atual)
+            } else {
+              resultados_quiz(),
+                //Adicionado a função inserirDados quando o quiz acaba (01/07/2024)
+              inserirDados()
+            }
+        }, 1000);
+    }
+}
+// Função inserirDados adicionada 01/07/2024 e finalizada dia 04/07/2024
+function inserirDados() {
+  var idVar = Number(sessionStorage.ID_USUARIO);
+  var acertosVar = acertos;
+  var errosVar = erros;
+  var quiz_atualVar = quiz_atual;
+  if (
+    acertosVar == '' &&
+    errosVar == ''
+  ) {
+    console.log('Erros e acertos não podem estar ambos indefinidos.');
+    return false;
+  } else if (
+    quiz_atualVar == ''
+  ) {
+    console.log('O quiz não pode estar indefinido.');
+  } else {
+    fetch("../dash/inserirDados", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idServer: idVar,
+        acertosServer: acertosVar,
+        errosServer: errosVar,
+        quiz_atualServer: quiz_atualVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log('dados inseridos no banco com sucesso!');
+        } else {
+          throw "Houve um erro no fetch ao tentar realizar a inserção no banco!"
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+      
+      return false;
+  }
+}
+
+function resultados_quiz() {
+  div_content.innerHTML = `    
+  <div class="content-dash">
+    <div class="quiz-dash">
+      <h1>Seus Resultados foram:</h1> 
+        <div class="quiz-dash-results">
+          <canvas id="quiz_dash_metrics" style="height: 100px;">
+                
+            </canvas>
+            </div>
+            </div>
+    </div>`;
+    
+    var quiz_resultados_sessao = document.getElementById('quiz_dash_metrics').getContext('2d');
+
+    new Chart(
+      quiz_resultados_sessao,
+        {
+            type: 'doughnut',
+            data: {
+                labels: ['Acertos', 'Erros'],
+                datasets: [{
+                    data : [acertos, erros],
+                    backgroundColor: ['#48d348', '#004455'],
+                }]
+            },
+        }
+    )
+  }
+</script>

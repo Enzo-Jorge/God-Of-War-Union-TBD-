@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body onload="validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu ativo">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+              <a href="mural.html">Mural</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="histórias.html">Histórias</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="musicas.html">Músicas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="armas.html">Armas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="quizzes.html">Quizzes</a>
+          </li>
+          <li>
+            |
+          </li>
+            <li>
+              <a href="ajude.html">Ajude!!</a>
+          </li>
+      </ul>
+      </div>
+    </div>
+    <div class="content-perfil" style="background-image: url(../assets/imgs/bg1.jpg); height: 100vh;">
+        <div class="card-perfil">
+        <img src="" alt="Foto de perfil" id="pfp" style="height: 128px; width: 128px;">
+        <div class="card-content">
+            <h1><span id="d_nick">usuario</span></h1>
+            <div class="card-bio">
+                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis voluptas repudiandae dignissimos itaque placeat cumque accusamus dicta! Optio porro iure, tenetur obcaecati voluptatibus veniam incidunt eius, molestiae ducimus ad sapiente?</span>
+            </div>
+            <!-- Adicionado em 28/07/2024 -->
+            <div class="card-qtd">
+              <p>Quantidade de posts feitos: <span id="card_qtd_posts">Placeholder</span></p>
+            </div>
+            <!-- ------------------------ -->
+        </div>
+        <div class="card-favoritos">
+            <p><span id="estrela">&#9733;</span> História favorita: <span id="card_fav_hist">Placeholder</span></p>
+            <p><span id="estrela">&#9733;</span> Música favorita: <span id="card_fav_song">Placeholder</span></p>
+            <p><span id="estrela">&#9733;</span> Arma favorita: <span id="card_fav_weapon">Placeholder</span></p>
+        </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+
+
+// Adicionado em 28/07/2024
+  histPull();
+  songPull();
+  weaponPull();
+// Adicionado em 29/07/2024
+  qtdPostsPull();
+
+  document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+  document.getElementById('pfp').src = sessionStorage.IMGURL_USUARIO;
+  document.getElementById('bio_bio').innerHTML = sessionStorage.BIO_USUARIO;
+
+  // Adicionado em 28/07/2024
+      function histPull() {
+
+      var idVar = Number(sessionStorage.ID_USUARIO);
+
+      fetch(`/favs/pullHist/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO histPull()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+          resposta.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            histCard(resposta, sessionStorage.ID_USUARIO);
+
+          })
+
+        } else {
+          console.error('Nenhum dado encontrado na API');
+        }
+
+      }).catch(function (error) {
+        console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+      });
+    }
+
+    function histCard(resposta, id) {
+      console.log('Iniciando o pull dos dados...');
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela função "histPull()" e passados para "histCard()":')
+      console.log(resposta)
+
+      var registro = resposta[0];
+
+      var game_title = registro.tituloHist;
+      
+      card_fav_hist.innerHTML = `${game_title}`;
+
+    }
+
+    function songPull() {
+
+      var idVar = Number(sessionStorage.ID_USUARIO);
+
+      fetch(`/favs/pullSong/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO histPull()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+          resposta.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            songCard(resposta, sessionStorage.ID_USUARIO);
+
+          })
+
+        } else {
+          console.error('Nenhum dado encontrado na API');
+        }
+
+      }).catch(function (error) {
+        console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+      });
+    }
+
+    function songCard(resposta, id) {
+      console.log('Iniciando o pull dos dados...');
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela função "songPull()" e passados para "songCard()":')
+      console.log(resposta)
+
+      var registro = resposta[0];
+
+      var song_title = registro.musica;
+      
+      card_fav_song.innerHTML = `${song_title}`;
+
+    }
+
+    function weaponPull() {
+
+var idVar = Number(sessionStorage.ID_USUARIO);
+
+fetch(`/favs/pullWeapon/${sessionStorage.ID_USUARIO}`, {
+  method: "GET",
+}).then(function (resposta) {
+  console.log("ESTOU NO THEN DO weaponPull()!")
+
+  if (resposta.ok) {
+    console.log(resposta);
+    resposta.json().then(function (resposta) {
+      console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+      resposta.reverse();
+
+      weaponCard(resposta, sessionStorage.ID_USUARIO);
+
+    })
+
+  } else {
+    console.error('Nenhum dado encontrado na API');
+  }
+
+}).catch(function (error) {
+  console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+});
+}
+
+function weaponCard(resposta, id) {
+console.log('Iniciando o pull dos dados...');
+console.log('----------------------------------------------')
+console.log('Estes dados foram recebidos pela função "weaponPull()" e passados para "weaponCard()":')
+console.log(resposta)
+
+var registro = resposta[0];
+
+var weapon_name = registro.arma;
+
+card_fav_weapon.innerHTML = `${weapon_name}`;
+
+}
+
+// Adicionado em 29/07/2024
+function qtdPostsPull() {
+  var idVar = Number(sessionStorage.ID_USUARIO);
+
+  fetch(`/posts/pullQtdPosts/${sessionStorage.ID_USUARIO}`, {
+    method: "GET",
+  }).then(function (resposta) {
+    console.log("ESTOU NO THEN DO qtdPostsPull()!")
+
+    if (resposta.ok) {
+      console.log(resposta);
+      resposta.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+        resposta.reverse();
+
+        pullUp(resposta, sessionStorage.ID_USUARIO);
+
+      })
+    } else {
+      console.error('Nenhum dado encontrado na API');
+    }
+
+  }).catch(function (error) {
+    console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+  });
+}
+
+// Adicionado em 28/07/2024
+function pullUp(resposta, id) {
+  console.log('Iniciando o pull dos dados...');
+  console.log('----------------------------------------------')
+  console.log('Estes dados foram recebidos pela função "qtdPostsPull()" e passados para "pullUp()":')
+  console.log(resposta)
+
+  var registro = resposta[0];
+
+  var qtd_posts = registro.numPosts;
+
+  card_qtd_posts.innerHTML = `${qtd_posts}`;
+}
+
+</script>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Histórias</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body onload="validarSessao()">
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+              <a href="mural.html">Mural</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li class="agora">
+              <a href="histórias.html">Histórias</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="musicas.html">Músicas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="armas.html">Armas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="quizzes.html">Quizzes</a>
+          </li>
+          <li>
+            |
+          </li>
+            <li>
+              <a href="ajude.html">Ajude!!</a>
+          </li>
+      </ul>
+</div>
+</div>
+<div class="content" id="background_image" style="background-image: url(https://i.pinimg.com/originals/78/8e/b3/788eb3fe3a2f75d898c900a425bab962.jpg); height: 100vh;">
+    <button onclick="retroceder()" id="retroceder">&lt;</button>
+    <button onclick="avancar()" id="avancar">&gt;</button>
+    <div class="slider">
+        <div class="slides">
+            <div class="slide" id="idimg1">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/5/53/God_of_War_2005_capa.png">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/5/53/God_of_War_2005_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/7/7e/God_of_War_2_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/6/6c/God_of_War_3_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/d/d0/God_of_War_Chains_of_Olympus_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/d/d8/God_of_War_Ghost_of_Sparta_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/3/38/God_of_War_Ascension_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/8/82/God_of_War_2018_capa.png" style="height: 400px; width: 400px;">
+            </div>
+            <div class="slide">
+                <img src="https://upload.wikimedia.org/wikipedia/pt/a/a5/God_of_War_Ragnarök_capa.jpg" style="height: 400px; width: 400px;">
+            </div>
+        </div>
+      </div>
+      <div class="historia">
+        <h1 id="titulo_jogo" class="jogo-text">God Of War <a onclick="estrela1()" class="estrela" id="estrela_fav1">☆</a></h1>
+        <h3 id="sinopse_jogo" class="jogo-text">Kratos é atormentado com memórias de seus atos e faz um trato de servir aos outros deuses do Olimpo por dez anos. Cansado de servir, convoca Atena e, ela afirma que o perdoará por seus atos se ele realizar uma última tarefa: matar Ares. Para isso ele deve encontrar e usar a Caixa de Pandora.</h3>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script src="../js/histórias.js"></script>
+<script>
+
+// Adicionado em 28/07/2024
+
+    var game_title = '#';
+    var histId = '#';
+
+    histPull();
+
+    document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+
+    function histPull() {
+
+      var idVar = Number(sessionStorage.ID_USUARIO);
+
+      fetch(`/favs/pullHist/${sessionStorage.ID_USUARIO}`, {
+        method: "GET",
+      }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO histPull()!")
+
+        if (resposta.ok) {
+          console.log(resposta);
+          resposta.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            estrela_dourada(resposta, sessionStorage.ID_USUARIO);
+
+          })
+
+        } else {
+          console.error('Nenhum dado encontrado na API');
+        }
+
+      }).catch(function (error) {
+        console.error(`Erro na obtenção de dados p/ puxar: ${error.message}`);
+      });
+    }
+
+    function estrela_dourada(resposta, id) {
+      console.log('Iniciando o pull dos dados...');
+      console.log('----------------------------------------------')
+      console.log('Estes dados foram recebidos pela função "histPull()" e passados para "estrela_dourada()":')
+      console.log(resposta)
+
+      var registro = resposta[0];
+
+      var game_title = registro.tituloHist;
+      var histId = registro.idHistoria;
+
+
+      if(titulo_jogo.innerHTML == `${game_title} <a onclick="estrela${histId}()" class="estrela" id="estrela_fav${histId}">☆</a>`) {
+        titulo_jogo.innerHTML = `${game_title} <a onclick="estrela${histId}()" class="estrela" id="estrela_fav${histId}">★</a>`
+      }
+
+    }
+    
+    function estrela1() {
+
+      if(estrela_fav1.innerHTML == '☆') {
+        estrela_fav1.innerHTML = '★';
+        favoritoVar = 1;
+      } else {
+        estrela_fav1.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela2() {
+      
+      if(estrela_fav2.innerHTML == '☆') {
+        estrela_fav2.innerHTML = '★';
+        favoritoVar = 2;
+      } else {
+        estrela_fav2.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela3() {
+      
+      if(estrela_fav3.innerHTML == '☆') {
+        estrela_fav3.innerHTML = '★';
+        favoritoVar = 3;
+      } else {
+        estrela_fav3.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela4() {
+      
+      if(estrela_fav4.innerHTML == '☆') {
+        estrela_fav4.innerHTML = '★';
+        favoritoVar = 4;
+      } else {
+        estrela_fav4.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela5() {
+      
+      if(estrela_fav5.innerHTML == '☆') {
+        estrela_fav5.innerHTML = '★';
+        favoritoVar = 5;
+      } else {
+        estrela_fav5.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela6() {
+      
+      if(estrela_fav6.innerHTML == '☆') {
+        estrela_fav6.innerHTML = '★';
+        favoritoVar = 6;
+      } else {
+        estrela_fav6.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela7() {
+      
+      if(estrela_fav7.innerHTML == '☆') {
+        estrela_fav7.innerHTML = '★';
+        favoritoVar = 7;
+      } else {
+        estrela_fav7.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function estrela8() {
+      
+      if(estrela_fav8.innerHTML == '☆') {
+        estrela_fav8.innerHTML = '★';
+        favoritoVar = 8;
+      } else {
+        estrela_fav8.innerHTML = '☆';
+        favoritoVar = null;
+      }
+      
+      favoritar();
+      
+    }
+    
+    function favoritar() {
+      
+      var idVar = Number(sessionStorage.ID_USUARIO);
+      
+      if(
+        idVar == ''
+      ) {
+        console.log('O id não pode estar indefinido.')
+      } else {
+        fetch("../favs/favoritarHist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            idServer: idVar,
+            histFavServer: favoritoVar,
+          }),
+        })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+          
+          if (resposta.ok) {
+            console.log('dados inseridos no banco com sucesso!');
+          } else {
+            throw "Houve um erro no fetch ao tentar realizar a inserção no banco!"
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO ${resposta}`);
+        });
+        
+        return false;
+        }
+        
+      }
+      
+      </script>

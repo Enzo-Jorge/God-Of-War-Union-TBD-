@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GOWU | Config</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/estilo2.css">
+    <link rel="icon" href="../assets/imgs/raf,360x360,075,t,fafafa_ca443f4786.jpg">
+  </head>
+  <body>
+    <nav class="menu-lateral">
+      </div>
+      <ul>
+        <img src="" alt="Foto de perfil" id="pfp-side-bar">
+        <span class="mensagem_ola">Olá, <span id="b_nick">usuário</span>!</span>
+        <li class="item-menu">
+          <a href="perfil.html">
+            <span class="icon"><i class="bi bi-person-circle"></i></span>
+            <span class="txt-link">Perfil</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="discussões.html">
+            <span class="icon"><i class="bi bi-chat-dots"></i></span>
+            <span class="txt-link">Discussões</span>
+          </a>
+        </li>
+        <li class="item-menu ativo">
+          <a href="config.html">
+            <span class="icon"><i class="bi bi-gear"></i></span>
+            <span class="txt-link">Configurações</span>
+          </a>
+        </li>
+        <li class="item-menu">
+          <a href="#" onclick="limparSessao()">
+            <span class="icon"><i class="bi bi-box-arrow-in-left"></i></i></span>
+            <span class="txt-link">Sair</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="screen">
+      <div class="header">
+        <div class="container">
+          <h1 class="titulo">God Of War Union</h1>
+          <ul class="navbar">
+            <li>
+              <a href="mural.html">Mural</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="histórias.html">Histórias</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="musicas.html">Músicas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="armas.html">Armas</a>
+            </li>
+            <li>
+              |
+            </li>
+            <li>
+              <a href="quizzes.html">Quizzes</a>
+          </li>
+          <li>
+            |
+          </li>
+            <li>
+              <a href="ajude.html">Ajude!!</a>
+          </li>
+      </ul>
+      </div>
+    </div>
+    <div class="content-perfil" style="background-image: url(../assets/imgs/bg1.jpg); height: 100vh;">
+        <div class="pfp-popup" id="pfp-popup" style="display: none;">
+            <span>url da imagem:</span>
+            <input type="text" id="url_img">
+            <button onclick="upload_pfp()">Mudar foto de perfil</button>
+        </div>
+        <div class="card-perfil">
+            <i class="bi bi-pencil-square" class="overlay-img"></i>
+        <img src="" alt="Foto de perfil" id="pfp-config" onclick="popup_pfp()" style="height: 128px; width: 128px;">
+        <div class="card-content">
+            <i class="bi bi-pencil-square"></i>
+            <input type="text" id="nickname_input">
+            <div class="card-bio">
+                <input type="text" id="bio_input" placeholder="">
+            </div>
+            <i class="bi bi-pencil-square"></i>
+        </div>
+        <div class="card-favoritos">
+            <p><span id="estrela">&#9733;</span> História favorita: <span>Jogo</span></p>
+            <p><span id="estrela">&#9733;</span> Música favorita: <span>Música</span></p>
+            <p><span id="estrela">&#9733;</span> Arma favorita: <span>Arma</span></p> <br>
+            <button onclick="atualizar()">Confirmar mudanças</button>
+        </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="../js/sidebar.js"></script>
+<script src="../js/sessao.js"></script>
+<script>
+    // document.getElementById('config-nick').value = sessionStorage.NICK_USUARIO;
+    document.getElementById('nickname_input').placeholder = sessionStorage.NICK_USUARIO;
+    document.getElementById('pfp-side-bar').src = sessionStorage.IMGURL_USUARIO;
+    document.getElementById('pfp-config').src = sessionStorage.IMGURL_USUARIO;
+    document.getElementById('bio-input').placeholder = sessionStorage.BIO_USUARIO;
+
+    function popup_pfp() {
+        document.getElementById('pfp-popup').style.display = 'block';
+    }
+
+    function upload_pfp() {
+        var imgUrl = url_img.value;
+
+        document.getElementById('pfp-config').src = imgUrl;
+
+        document.getElementById('pfp-popup').style.display = 'none';
+    }
+
+    function atualizar() {
+        var id = sessionStorage.ID_USUARIO;
+        var nick = nickname_input.value;
+        var imgUrl = document.getElementById('pfp-config').src;
+        var bio = bio_input.value;
+
+        console.log(id)
+
+        fetch("../usuarios/atualizar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        idServer: id,
+        nickServer: nick,
+        imgUrlServer: imgUrl,
+        bioServer: bio,
+      }),
+    })  .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert('As atualizações do perfil foram realizadas com sucesso!');
+            window.location = './config.html'
+        } else {
+          throw "Houve um erro ao tentar realizar as atualizações do perfil!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  // fetch("../usuarios/atualizar_pagina", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       // crie um atributo que recebe o valor recuperado aqui
+  //       // Agora vá para o arquivo routes/usuario.js
+  //       idServer: sessionStorage.ID_USUARIO,
+  //     }),
+  //   })  .then(function (resposta) {
+  //       console.log("resposta: ", resposta);
+
+  //       if (resposta.ok) {
+  //           resposta.json()
+  //           .then(function (respostajson) {
+  //               sessionStorage.NICK_USUARIO = respostajson.nick;
+  //               sessionStorage.IMGURL_USUARIO = respostajson.imgUrl;
+  //               sessionStorage.BIO_USUARIO = respostajson.bio;
+
+  //               validarSessao();
+  //           }) 
+  //       } else {
+  //         throw "Houve um erro ao tentar realizar as atualizações do perfil!";
+  //       }
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+</script>
